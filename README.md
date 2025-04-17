@@ -1,176 +1,64 @@
-# Welcome to PowerDale
+# Welcome to the CapIntel Live Coding Exercise!
+This project is a sample repository containing the main dependency that you will be using during the test. These instructions will help you be ready for the test by explaining what to expect.
 
-PowerDale is a small town with around 100 residents. Most houses have a smartmeter installed that can save and send information
-about how much energy a house has used.
+## Why live coding? 
+Our goal is to build the strongest development team possible. We know live coding can be stressful and this exercise is designed to demonstrate a realistic problem you would encounter in the role. We will use this session to learn more about your technical skills, and your approach problem solving. Please email tande@capintel.com if you require any accommodations for your pair programming session.
 
-There are three major providers of energy in town that charge different amounts for the power they supply.
+## How to prepare
+Here are a few important elements to prepare before your live coding session.
 
-- _Dr Evil's Dark Energy_
-- _The Green Eco_
-- _Power for Everyone_
+### Install VS Code
+We recommend installing VS Code (or any IDE you prefer for the MERN stack). Please note: this exercise will not involve Mongo and setting up a Mongo server is not required.
 
-# Introducing JOI Energy
+### Install node
+The latest version that we've tested this code with is v18.20.1
 
-JOI Energy is a new startup in the energy industry.
-Rather than selling energy they want to differentiate themselves from the market by recording their customers' energy usage from their smart meters and
-recommending the best suppler to meet their needs.
-
-You have been placed into their development team, whose current goal is to produce an API which their customers and smart meters will interact with.
-
-Unfortunately, two of the team are on annual leave, and another has called in sick!
-You are left with a ThoughtWorker to progress with the current user stories on the story wall. This is your chance to make an impact on the business, improve the code base and deliver value.
-
-## Story Wall
-
-At JOI energy the development team use a story wall or kanban board to keep track of features or "stories" as they are worked on.
-
-The wall you will be working from today has 7 columns:
-
-- Backlog
-- Ready for Dev
-- In Dev
-- Ready for Testing
-- In Testing
-- Ready for sign off
-- Done
-
-Examples can be found here https://leankit.com/learn/kanban/kanban-board/
-
-## Users
-
-To trial the new JOI software 5 people from the JOI accounts team have agreed to test the service and share their energy data.
-
-- Sarah - Smart Meter Id: "smart-meter-0", current power supplier: Dr Evil's Dark Energy.
-- Peter - Smart Meter Id: "smart-meter-1", current power supplier: The Green Eco.
-- Charlie - Smart Meter Id: "smart-meter-2", current power supplier: Dr Evil's Dark Energy.
-- Andrea - Smart Meter Id: "smart-meter-3", current power supplier: Power for Everyone.
-- Alex - Smart Meter Id: "smart-meter-4", current power supplier: The Green Eco.
-
-## Overview
-
-JOI Energy is a new energy company that uses data to ensure customers are 
-able to be on the best price plan for their energy consumption.
-
-## API
-
-Below is a list of API endpoints with their respective input and output.
-
-### Store Readings
-
-#### Endpoint
+### Run the front and back projects
+Those are vanilla Express and React projects using node. Simply go in the subfolder, enter the commands, and you should have a server running:
 
 ```
-POST
-/readings/store
+cd frontend
+npm install
+npm start
 ```
-
-#### Input
-
-```json
-{
-    "smartMeterId": <smartMeterId>,
-    "electricityReadings": [
-        { "time": <UTC-Time>, "reading": <reading> },
-        ...
-    ]
-}
-```
-
-`time`: UTC time, e.g. `2024-04-13T19:41:26Z`
-`reading`: kW reading of smart meter at that time, e.g. `0.0503`
-
-### Get Stored Readings
-
-#### Endpoint
+You should then be able to open your browser to [localhost:3000](http://localhost:3000/) and see a small React home page.
 
 ```
-GET
-/readings/read/<smartMeterId>
+cd backend
+npm install
+npm start
 ```
+You should then be able to open you browser to [localhost:5500](http://localhost:5500/) and see a small Express home page.
 
-`smartMeterId`: A string value, e.g. `smart-meter-0`
+## What is the content of the live coding exercise?
+We've created a codebase with the same structure that you have in this repository. You're going to have a small backend (Express) with a small frontend (React). The application is a simple view to see the performance of financial instruments.
 
-#### Output
+## Learn a few basic financial concepts
+- [Exchange Traded Fund (ETF)](https://www.investopedia.com/terms/e/etf.asp#toc-what-is-an-exchange-traded-fund-etf)
+- [Stocks](https://www.investopedia.com/terms/s/stock.asp#toc-what-are-stocks)
 
-```json
-[
-    { "time": "2017-09-07T10:37:52.362Z", "reading": 1.3524882598124337 },
-    ...
-]
-```
+### What to expect
 
-### View Current Price Plan and Compare Usage Cost Against all Price Plans
- 
-#### Endpoint
+#### Adding new features
+You will need to add new features on the existing code.
 
-```
-GET
-/price-plans/compare-all/<smartMeterId>
-```
+#### Refactoring
+Sadly, the application builder had multiple mistakes while developing the application in both the front and back end. Some of those errors are structural, some of them are bugs, and some of them are UX flaws. Throughout the exercise, we encourage you to tackle those while you are coding a new feature or when you spot them. The most important thing is to communicate with your interviewer that you've spotted something and then explain your logic for why you chose to fix it right away or to postpone it later in the session.
 
-`smartMeterId`: A string value, e.g. `smart-meter-0`
- 
-#### Output
-```json
-{
-   "pricePlanId": "price-plan-2",
-   "pricePlanComparisons": { 
-       "price-plan-0": 21.78133785680731809,
-       ...
-   }
-}
-```
- 
-### View Recommended Price Plans for Usage
+#### Interviewer interactions
+The interviewer is there to help you understand the exercise, answer questions and to share ideas with. The person is not there to trick you or mislead you.
 
-#### Endpoint
+#### What am I allowed to use
+You can use anything you want (including AI). However, you are responsible for everything that you produce. The interviewer may ask you questions about your code; if you are not able to answer questions or provide an explanation, it will impact the result of your session.
 
-```
-GET
-/price-plans/recommend/<smartMeterId>[?limit=<limit>]
-```
+#### How will you be assessed?
+- **Refactoring efforts coverage**: As stated above, we expect to either identify and acknowledge or fix some of the issues you see. If you choose to identify and acknowledge, let the interviewer know why you are making this decision.
+- **New feature implementation**: You should be able to implement new features in the application. Your implementation and design of the features will be evaluated (this will be relative as we acknowledge this is a time-boxed session)  
+- **Software best practices**: We will evaluate the work accomplished against the software development best practices. As discussed above, the project was badly built on purpose and best practices weren't applied. As you're going through the exercise, take time to discuss best practices with your interviewer and what changes and improvements you would like to make.
 
-`smartMeterId`: A string value, e.g. `smart-meter-0`
-
-`limit`: Optional limit to display only a number of price plans, e.g. `2`
-
-#### Output
-
-```json
-[
-    { 
-        "price-plan-0": 15.084324881035297
-    },
-    ...
-]
-```
-
-## Useful make commands
-
-```
-make run
-make test
-make lint
-make build
-make clean
-make all
-make             # default is make all
-```
-
-This has been created using go modules; to run the tests, just execute:
-
-```bash
-go test -race -cover -coverprofile=coverage.txt -covermode=atomic ./...
-```
-
-or (using make):
-
-```bash
-make test
-```
-
-The Makefile also supports other commands, such as:
-
-```bash
-make lint
-```
+### Agenda for the session
+1. Join the Microsoft Teams Video link that is in your calendar invite. Be sure to double check your tech before joining. 
+2. Your interviewer will introduce themselves and share an additional git repository with the complete codebase for 5 minutes.
+3. When you have reviewed the file, the exercise will formally begin. We ask that you share your desktop via Microsoft Teams. Please ensure that any irrelevant tabs or applications are closed before your session. If you have not shared your screen via Microsoft Teams before and are using a Mac, you will need to grant the necessary permissions before your session. [Instructions for sharing your screen via Microsoft Teams can be found here](https://support.microsoft.com/en-us/office/share-content-in-microsoft-teams-meetings-fcc2bf59-aecd-4481-8f99-ce55dd836ce8).
+4. Your interviewer will be keeping track of time. The session will be booked for 75 minutes to ensure you have time to review and work through the exercise
+5. Once the session is complete, your interviewer will ask if you have any outstanding questions. You can expect to hear back about your candidacy us within 5 business days of your live coding session.
